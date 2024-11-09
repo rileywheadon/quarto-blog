@@ -1,0 +1,86 @@
+---
+title: "A Structural Analysis of Academic Writing"
+date: "2024-11-05"
+date-modified: "2024-11-05"
+categories: [LLM, Python, R, Web Scraping]
+image: sunset5.jpeg
+---
+
+Academic journals require research articles to follow a specific format. First, an 150-300 word abstract provides an big-picture overview of the main ideas contained within the paper. An abstract may also provide a brief summary of relevant background information or methods used in the paper. Following the abstract, authors typically provide a longer introduction section. In this authors may do a number of things, including explain why their research is important, summarize past results in the field, identify key gaps in the literature, and discuss methods used in the paper. After the introduction, authors typically include a methods, results, discussion, and conclusion section. However, these sections are often modified, split up, or removed entirely to better suit the project.
+
+Since the abstract and introduction are crucial to any research paper, understanding how to write these sections effectively is an essential skill for a researcher. Advice on paper writing is typically *qualitative* -- stuff like "start broad and then gradually get narrower" or "make sure to emphasize the importance of your research". Today, I outline a *quantitative* framework for writing abstracts and introduction. As an example, my analysis gives an estimate of how many sentences of motivation you should provide and how where these sentences should be located in your paper. To do this, I analyzed over $9\,000$ papers from the [PLOS Computational Biology](https://journals.plos.org/ploscompbiol/) journal using the open source LLM [Llama 3.2](https://www.llama.com/).
+ 
+**Remark**: The idea for this project came from my supervisor, [Prof. Eric Cytrynbaum](https://personal.math.ubc.ca/~cytryn/index.shtml).
+
+## Web Scraping
+
+Before I could do any fancy AI-powered analysis, I needed to get the abstracts and introductions from a large number of academic papers. Getting a bunch of abstracts is straightforward, the [arXiv Dataset](https://www.kaggle.com/datasets/Cornell-University/arxiv) contain millions of them. However, sourcing the introductions from these papers is much harder. My first idea was to just feed the full-text PDFs from the arXiv dataset directly into the LLM. However, even state-of-the-art models like ChatGPT 4o struggled to extract the abstract and introduction sections I needed. I'm not entirely sure why this task is so difficult, but I think it might something to do with the two-column formatting present in many academic journals. This experience led me to realize that I needed a way to extract text directly from the papers themselves, which led me to web scraping.
+
+Web scraping is a tedious and annoying task. Small changes between webpages can completely break your scraper, and you're constantly running the risk of getting your IP permanently banned. Journals run by the big publishing companies like Springer and Elsevier also require authentication, which adds an additional layer of complexity. In order to keep things as simple as possible, I chose to extract papers from a single open-source journal[^1], [PLOS Computational Biology](https://journals.plos.org/ploscompbiol/). To actually do the web scraping, I used the Python library [beautifulsoup4](https://pypi.org/project/beautifulsoup4/). I managed to get every paper from PLOS Computational Biology -- a total of $9\,653$ articles!
+
+[^1]: I picked computational biology over another PLOS journal because its closest to my own research interests. Hopefully, the results of this analysis will come in handy if I ever manage to write a paper!
+
+## Sentence Categorization
+
+After gathering the data, I ran each abstract and introduction through [Llama 3.2](https://www.llama.com/) to categorize the sentences. In particular, I used the 90B parameter text-preview model. I was hoping to use the 1B and 3B models which can be run from my laptop, but unfortunately they weren't giving me accurate results. Since I (sadly) don't own an industrial compute cluster, I used the [Groq](https://groq.com/) API to run my analysis on the cloud. With their free plan, I got access to $500\,000$ tokens of chat completion per day. This turned out to be enough to categorize the abstracts and introductions from about $150$ academic papers each night. I ended up analyzing the data from the $500$ most recent papers over three days. In total, these papers contained over $20\,000$ sentences. The prompt I used is shown below: 
+
+>Here are four categories which can be used to classify the sentences of a scientific paper. Make sure that you correctly divide the text into sentences. Remember that abbreviations like "et al." do not constitute the end of a sentence. However, all sentences must end with a period or question mark.
+>
+>CATEGORY 1: Motivation for the research in a broad context. This type of sentence helps the reader to understand why the research is relevant, useful, and interesting.
+>
+>CATEGORY 2: Past research in the field, which may be experimental or theoretical. Sentences in this category may also describe the results of previous research efforts.
+>
+>CATEGORY 3: Descriptions of topics that remain poorly understood or descriptions of gaps in the literature that need to filled.
+>
+>CATEGORY 4: The methods used by the authors in this research paper. Sentences in this category may also discuss the results of this research paper.
+>
+>A sentence can only belong to one category. Use the context of the paragraph to determine whether a sentence is discussing the research paper itself or a previous study. Your response should be a JSON object in the following format:
+>
+>```json
+>{
+>  "abstract": [
+>    {
+>      "sentence": ...,
+>      "position": ...,
+>      "category": ...,
+>    },
+>    ...
+>  ],
+>  "introduction": [
+>    {
+>      "sentence": ...,
+>      "position": ...,
+>      "category": ...,
+>    },
+>    ...
+>  ]
+>}
+>```
+>
+>
+>The "sentence" field must contain the exact sentence that was classified. The "position" is the relative position of the sentence in the text (i.e. 1 for the first sentence, 2 for the second sentence, etc.). The "category" should be one of 1, 2, 3, or 4. Now, I will provide you with an abstract followed by an introduction. Classify each of the sentences. Make sure that the first object in the "abstract" and "introduction" fields have a position of 1.
+
+**Remark**: While I was running my classification jobs through Groq, I stumbled across the hilariously named and immensely practical `caffeinate` command, which allows you to prevent your computer from sleeping until a specified process completes.
+
+## Results
+
+In case you didn't read the prompt, here's a quick recap of the four sentence categoires I used for this project:
+
+1. **Motivation**: Sentences that describe why the research is relevant, useful, and interesting to the scientific community at large.
+2. **Background**: The results of past research in the field, which may be experimental or theoretical. 
+3. **Research Gaps**: Areas of the field that remain poorly understood.
+4. **Methods & Results**: Summaries of the methods and results from *this* paper.
+
+Without further ado, here's what I found. For the sake of brevity, I will use the word "Section" to refer generally to the abstract and introduction.
+
+![**Figure 1**: Smoothed frequency of each sentence category plotted against relative position in the abstract/introduction. A sentence at position $m$ in a section with $n$ sentences has a relative position of $m/n$. On average, the categories are arranged in order. Categories 2 (background) and 3 (research gaps) overlap significantly. This suggests that authors are interweaving past results with the questions generated by these studies.](category-kde.png)
+
+![**Figure 2**: Boxplot of the number of sentences in each section and category. On average, abstracts have two sentences of motivation, two sentences of background, and one sentence explaining a research gap. However, most of the abstract is dedicated to summarizing the methods and results from the paper. In the introduction, authors only include a few sentences about motivation and research gaps. The majority of the introduction is dedicated to explaining background information, with some room at the end for summarizing the methods and results. ](category-count.png)
+
+![**Figure 3**: Boxplot of the total number of sentences in the abstract and introduction. The median abstract contains nine sentences, with the majority of abstracts containing between 6 and 11 sentences. Introductions tend to have around 35 sentences, although some are significantly longer. ](section-count.png)
+
+**Key Takeaway 1**: A standard abstract in PLOS Computational Biology has two sentences of motivation, followed by 2-4 sentences explaining background information and the research gap the authors aim to fill. The rest of the abstract summarizes the methods and results in the paper.
+
+**Key Takeaway 2**: A standard introduction in PLOS Computational Biology contains a few sentences of motivation, followed by 20-30 sentences (3-4 paragraphs) explaining relevant background information and discussing the research gaps. This is followed by 4-5 sentences (1 paragraph) summarizing the papers methods and results.
+
+**Remark**: For the data anlysis component of this project I tried using the [tidyverse](https://www.tidyverse.org/) for the first time, and it was great! The entire data processing pipeline is just so idiomatic and fun to use. I think that `ggplot2` definitely has the edge over `matplotlib` and `plotly` (the two Python plotting libraries I've tried) for $90\%$ of projects. From now on I'll be doing my EDA and plotting in R.  

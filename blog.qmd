@@ -1,0 +1,13 @@
+---
+title: "Riley's Blog"
+listing:
+  id: posts
+  contents: posts
+  sort: "date desc"
+  type: grid
+  date-format: long
+  fields: [date, title, reading-time, categories, image]
+  image-height: 12em
+page-layout: full
+title-block-banner: true
+---

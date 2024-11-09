@@ -1,0 +1,21 @@
+project:
+  type: website
+
+website:
+  title: "Home"
+  navbar:
+    right:
+      - href: resume.pdf
+        text: Résumé
+      - href: blog.qmd
+        text: Blog
+      - href: https://github.com/rileywheadon
+        icon: github
+
+format:
+  html:
+    theme: litera
+    css: styles.css
+
+
+

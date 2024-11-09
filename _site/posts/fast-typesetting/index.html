@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-07-19">
+
+<title>Fast Typesetting with Obsidian LaTeX Suite – Home</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Home</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.pdf"> 
+<span class="menu-text">Résumé</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/rileywheadon"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Fast Typesetting with Obsidian LaTeX Suite</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Obsidian</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 19, 2024</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">October 19, 2024</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>If you’ve ever prepared a document with <span class="math inline">\(\LaTeX\)</span> before, you know that it can be a long and frustrating process. The language is built to create scientific papers, and it comes equipped to deal with the precise formatting that one would expect from such publications. But the cost of precision is time, and virtually nothing in <span class="math inline">\(\LaTeX\)</span> is designed to be done quickly. Every command requires the inconveniently located backslash key, and you’ll probably get carpal tunnel from opening and closing the dreaded curly brackets every five keystrokes. To make matters worse, common mathematical symbols are often unreasonably verbose, like <code>\partial</code>, <code>\mathbb{R}</code>, or <code>\leftrightarrow</code>.</p>
+<p>However, not all is lost. This article will show you how to transform <span class="math inline">\(\LaTeX\)</span> from a monolith of confusing commands to a simple, customizable tool for taking notes in math and science classes. To do this, I will be using the personal knowledge management software <a href="https://obsidian.md/">Obsidian</a>. Using this technique, I have taught myself to typeset mathematics faster than I can write. I have produced hundreds of typeset notes that look like the image below <em>during class</em>. By using <a href="https://pandoc.org/">pandoc</a> to export my markdown files to PDF, I have also made typesetting written assignments <em>significantly</em> faster. If any of this sounds interesting to you, keep reading. I promise this is useful stuff.</p>
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="example-note.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>A note about Euclidian Spaces from my first course in linear algebra. The key to making notes like is the use of <span class="math inline">\(\LaTeX\)</span> snippets for fast typesetting, which I explain how to use in the rest of this post.</figcaption>
+</figure>
+</div>
+<p><strong>The Solution</strong></p>
+<p>In 2019, the late <a href="https://castel.dev/">Gilles Castel</a> published an excellent blog post about taking notes using <span class="math inline">\(\LaTeX\)</span> and Vim. Instead of typing the commands by hand, he used a snippet program to autocomplete them as he typed. If you’re familiar with configuring Vim and want to try this, the original article is <a href="https://castel.dev/post/lecture-notes-1/">here</a>. A more detailed guide, written by Elijian Mastnak, can be found <a href="https://www.ejmastnak.com/tutorials/vim-latex/intro/">here</a>.</p>
+<p>However, learning Vim and managing a bunch of dotfiles can be exhausting. For the less technically inclined, there’s the <a href="https://github.com/artisticat1/obsidian-latex-suite">Obsidian LaTeX Suite</a>, which provides snippet functionality within Obsidian. It can be installed using the following steps:</p>
+<ol type="1">
+<li>Open the settings menu in Obsidian</li>
+<li>Go to the community plugins tab and make sure that “Restricted Mode” is off.</li>
+<li>Click “Browse”, then search for, install, and enable the Obsidian <span class="math inline">\(\LaTeX\)</span> Suite.</li>
+</ol>
+<p>To check that it was installed correctly, open a new note and type <code>mk</code>. If the text is automatically replaced with <code>$$</code>, then the plugin is working.</p>
+<p><strong>Writing Snippets</strong></p>
+<p>For a more thorough introduction to writing snippets, I recommend you read the <a href="https://github.com/artisticat1/obsidian-latex-suite">documentation</a>. To create and remove snippets, open the Obsidian settings menu, then click on the “<span class="math inline">\(\LaTeX\)</span> Suite” tab under “Community Plugins”. In this, tab you should see a list of snippets that looks like this:</p>
+<pre><code>{trigger: "...", replacement: "...", options: "..."}</code></pre>
+<p><code>trigger</code> is the series of keystrokes that will activate the snippet. The snippets are smart–autocomplete will replace the longest active snippet. As an example, suppose you had two snippets with triggers <code>psb</code> and <code>sb</code>. If you were to type in <code>psb</code>, the autocomplete will recognize this as the first snippet and replace it properly, ignoring the fact that the <code>sb</code> snippet is also defined. This is useful because it allows for <em>some</em> overlap in your snippets. But be careful, if the two snippets were <code>sb</code> and <code>sbp</code>, the second snippet would never activate.</p>
+<p><code>replacement</code> is the text that will be substituted in place of the trigger. If you’re writing <span class="math inline">\(\LaTeX\)</span>, remember to escape backslashes by writing <code>\\</code> instead of <code>\</code>. You can also add a line break with <code>\n</code>. The replacement can contain any number of tab stops, which are included using the characters <code>$0</code>, <code>$1</code>, etc. Upon snippet activation, the cursor will be moved to the first tab stop.</p>
+<p><code>options</code> is a string of characters that contains the settings:</p>
+<ul>
+<li><code>m</code> stands for “math mode”. If this setting is enabled, the snippet will only activate in math mode (both inline and display).</li>
+<li><code>A</code> stands for “autocomplete”. If this setting is enabled, the trigger will be replaced immediately. Otherwise, you will have to press <code>TAB</code> in order to activate the snippet.</li>
+</ul>
+<p>As an example, here is a simple snippet that replaces <code>ff</code> with <code>\frac</code> command:</p>
+<pre><code>{
+    trigger: "ff",
+    replacement: "\\frac{$0}{$1}",
+    options: "mA"
+}</code></pre>
+<ul>
+<li>Note that we use escape the backslash character using <code>\\</code>.</li>
+<li>Upon snippet activation, the cursor will move to the <code>$0</code> tab stop. If you press tab again, it will move to the <code>$1</code> tab stop.</li>
+<li><code>"mA"</code> means the snippet will activate automatically in math mode.</li>
+</ul>
+<p><strong>Building a System</strong></p>
+<p>Now, go to back to the settings menu, and <em>delete all the default snippets</em>. If you want to remember your snippets and build a system that works for you, I would <em>highly recommend</em> writing them yourself. Of course, feel free to check the default snippets for ideas, many of them are very good. Here is some general advice on writing snippets:</p>
+<ul>
+<li>Every snippet should autocomplete using the <code>"A"</code> option.</li>
+<li>Snippets should be 2 or 3 characters long, 4 at the most.</li>
+<li>Snippets should not use groups of letters that are commonly used in mathematical expressions. For example, an autocompleting snippet with the trigger <code>dx</code> will frequently activate when you don’t want it to.</li>
+<li>Use capital letters and special characters to differentiate snippets. That being said, you should try to keep your snippets as fast as possible. Using inaccessible keys like <code>|</code> or <code>~</code> in your snippets will slow you down.</li>
+<li>Only create snippets when you need them. Remember that every additional snippet creates more possibilities for errors.</li>
+</ul>
+<p><strong>My Snippets</strong></p>
+<p>As I mentioned above, I highly recommend creating your own snippets. That being said, I will begrudgingly share what I’ve been using below to you get started.</p>
+<p>Environments:</p>
+<pre><code>{
+    trigger: "cases", 
+    replacement: "\\begin{cases}\n$0\n\\end{cases}", 
+    options: "mA"
+},
+{
+    trigger: "align", 
+    replacement: "\\begin{align}\n$0\n\\end{align}", 
+    options:"mA"
+},
+{
+    trigger: "eqn", 
+    replacement: "\\begin{equation}\n$0\n\tag{$1}\\end{equation}", 
+    options: "mA"
+}</code></pre>
+<p>Trigonometric Functions:</p>
+<pre><code>{trigger: "sin", replacement: "\\sin ", options: "mA"},
+{trigger: "cos", replacement: "\\cos ", options: "mA"},
+{trigger: "tan", replacement: "\\tan ", options: "mA"},
+{trigger: "hsin", replacement: "\\sinh ", options: "mA"},
+{trigger: "hcos", replacement: "\\cosh ", options: "mA"},
+{trigger: "htan", replacement: "\\tanh ", options: "mA"},
+{trigger: "asin", replacement: "\\arcsin ", options: "mA"},
+{trigger: "acos", replacement: "\\arccos ", options: "mA"},
+{trigger: "atan", replacement: "\\arctan ", options: "mA"},</code></pre>
+<p>Brackets:</p>
+<pre><code>{trigger: "…", replacement: "\\dots", options: "mA"},
+{trigger: "_", replacement: "_{$0}$1", options: "mA"},
+{trigger: "(", replacement: "($0)$1", options: "mA"},
+{trigger: "[", replacement: "[$0]$1", options: "mA"},
+{trigger: "|", replacement: "|$0|$1", options: "mA"},
+{trigger: "lr(", replacement: "\\left( $0 \\right) $1", options: "mA"},
+{trigger: "lr[", replacement: "\\left[ $0 \\right] $1", options: "mA"},
+{trigger: "lr|", replacement: "\\left| $0 \\right| $1", options: "mA"},
+{trigger: "ang", replacement: "\\langle $0 \\rangle $1", options: "mA"},
+{trigger: "set", replacement: "\\{ $0 \\} $1", options: "mA"},</code></pre>
+<p>Greek Letters:</p>
+<pre><code>{trigger: ";a", replacement: "\\alpha ", options: "mA"},
+{trigger: ";b", replacement: "\\beta ", options: "mA"},
+{trigger: "chi", replacement: "\\chi ", options: "mA"},
+{trigger: ";g", replacement: "\\gamma ", options: "mA"},
+{trigger: ";G", replacement: "\\Gamma ", options: "mA"},
+{trigger: ";d", replacement: "\\delta ", options: "mA"},
+{trigger: ";D", replacement: "\\Delta ", options: "mA"},
+{trigger: ";e", replacement: "\\epsilon ", options: "mA"},
+{trigger: ";z", replacement: "\\zeta ", options: "mA"},
+{trigger: ";t", replacement: "\\theta ", options: "mA"},
+{trigger: ";T", replacement: "\\Theta ", options: "mA"},
+{trigger: ";k", replacement: "\\kappa ", options: "mA"},
+{trigger: ";l", replacement: "\\lambda ", options: "mA"},
+{trigger: ";L", replacement: "\\Lambda ", options: "mA"},
+{trigger: "nu", replacement: "\\nu", options: "mA"},
+{trigger: "mu", replacement: "\\mu ", options: "mA"},
+{trigger: "rho", replacement: "\\rho ", options: "mA"},
+{trigger: ";s", replacement: "\\sigma ", options: "mA"},
+{trigger: ";S", replacement: "\\Sigma ", options: "mA"},
+{trigger: ";o", replacement: "\\omega ", options: "mA"},
+{trigger: ";O", replacement: "\\Omega ", options: "mA"},
+{trigger: "pi", replacement: "\\pi ", options: "mA"},
+{trigger: "Pi", replacement: "\\Pi ", options: "mA"},
+{trigger: "phi", replacement: "\\phi ", options: "mA"},
+{trigger: "Phi", replacement: "\\Phi ", options: "mA"},
+{trigger: "psi", replacement: "\\psi ", options: "mA"},
+{trigger: "Psi", replacement: "\\Psi ", options: "mA"},
+{trigger: "tau", replacement: "\\tau ", options: "mA"},
+{trigger: "xi", replacement: "\\xi", options: "mA"},</code></pre>
+<p>Precalculus:</p>
+<pre><code>{trigger: "sr", replacement: "^{2}", options: "mA"},
+{trigger: "cb", replacement: "^{3}", options: "mA"},
+{trigger: "rd", replacement: "^{ $0 }$1", options: "mA"},
+{trigger: "sq", replacement: "\\sqrt{ $0 }$1", options: "mA"},
+{trigger: "ee", replacement: "e^{ $0 }$1", options: "mA"},
+{trigger: "ep", replacement: "\\exp", options: "mA"},
+{trigger: "ff", replacement: "\\frac{ $0 }{ $1 }$2", options: "mA"},
+{trigger: "pm", replacement: "\\pm", options: "mA"},
+{trigger: "oo", replacement: "\\infty", options: "mA"},
+{trigger: "neq", replacement: "\\neq", options: "mA"},
+{trigger: "geq", replacement: "\\geq", options: "mA"},
+{trigger: "leq", replacement: "\\leq", options: "mA"},
+{trigger: "ln", replacement: "\\ln", options: "mA"},
+{trigger: "log", replacement: "\\log", options: "mA"},</code></pre>
+<p>Linear Algebra:</p>
+<pre><code>{trigger: "tm", replacement: "\\times", options: "mA"},
+{trigger: "dot", replacement: "\\cdot", options: "mA"},
+{trigger: "vec", replacement: "\\mathbf{$0}$1", options: "mA"},
+{trigger: "perp", replacement: "\\perp", options: "mA"},
+{trigger: "para", replacement: "\\parallel", options: "mA"},
+{trigger: "nrm", replacement: "\\left\\lVert $0 \\right\\rVert $1", options: "mA"},
+{trigger: ":i", replacement: "\\mathbf{i}", options: "mA"},
+{trigger: ":j", replacement: "\\mathbf{j}", options: "mA"},
+{trigger: ":k", replacement: "\\mathbf{k}", options: "mA"},
+{trigger: "hat", replacement: "\\hat{$0}$1", options: "mA"},
+{
+    trigger: "vmtx", 
+    replacement: "\\begin{vmatrix}\n$0\n\\end{vmatrix}", 
+    options: "mA"
+},
+{
+    trigger: "mtx", 
+    replacement:
+    "\\begin{pmatrix}\n$0\n\\end{pmatrix}",
+    options: "mA"
+},
+{
+    trigger: "aug", 
+    replacement: "\\left[\\begin{array{$0|c}\n$1\n\\end{array}\\right]", 
+    options: "mA"
+},</code></pre>
+<p>Calculus:</p>
+<pre><code>{trigger: "sum", replacement: "\\sum", options: "mA"},
+{trigger: "lim", replacement: "\\lim_{$0 \\to $1}$2", options: "mA"},
+{trigger: "par", replacement: "\\frac{\\partial $0}{\\partial $1}$2", options: "mA"},
+{trigger: "int", replacement: "\\int $0 \\, d$1", options: "mA"},
+{trigger: "oint", replacement: "\\oint $0 \\, d$1", options: "mA"},
+{trigger: "iint", replacement: "\\iint", options: "mA"},
+{trigger: "iiint", replacement: "\\iiint", options: "mA"},
+{trigger: "@", replacement: "\\Bigg|_{$0}^{$1}", options: "mA"},
+{trigger: "nb", replacement: "\\nabla", options: "mA"},
+{trigger: "LL", replacement: "\\mathcal{L}", options: "mA"},
+{trigger: "hess", replacement: "\\mathscr{H}", options: "mA"},</code></pre>
+<p>Logic and Set Theory:</p>
+<pre><code>{trigger: "and", replacement: "\\land", options: "mA"},
+{trigger: "orr", replacement: "\\lor", options: "mA"},
+{trigger: "not", replacement: "\\lnot", options: "mA"},
+{trigger: "iff", replacement: "\\leftrightarrow", options: "mA"},
+{trigger: "-&gt;", replacement: "\\rightarrow", options: "mA"},
+{trigger: "mod", replacement: "\\bmod", options: "mA"},
+{trigger: "==", replacement: "\\equiv", options: "mA"},
+{trigger: "cmp", replacement: "\\circ", options: "mA"},
+{trigger: "tf", replacement: "\\therefore", options: "mA"},
+{trigger: "apx", replacement: "\\approx", options: "mA"},
+{trigger: "fa", replacement: "\\forall", options: "mA"},
+{trigger: "ex", replacement: "\\exists", options: "mA"},
+{trigger: "nex", replacement: "\\nexists", options: "mA"},
+{trigger: "inn", replacement: "\\in", options: "mA"},
+{trigger: "nin", replacement: "\\notin", options: "mA"},
+{trigger: "psb", replacement: "\\subset", options: "mA"},
+{trigger: "nsb", replacement: "\\not\\subset", options: "mA"},
+{trigger: "sb", replacement: "\\subseteq", options: "mA"},
+{trigger: "stu", replacement: "\\cup", options: "mA"},
+{trigger: "sti", replacement: "\\cap", options: "mA"},
+{trigger: "bsu", replacement: "\\bigcup", options: "mA"},
+{trigger: "bsi", replacement: "\\bigcap", options: "mA"},
+{trigger: "prd", replacement: "\\prod", options: "mA"},
+{trigger: "std", replacement: "\\setminus", options: "mA"},
+{trigger: "stc", replacement: "^{\\complement}", options: "mA"},
+{trigger: "ets", replacement: "\\emptyset", options: "mA"},
+{trigger: "=&gt;", replacement: "\\Rightarrow", options: "mA"},
+{trigger: "&lt;=&gt;", replacement: "\\Leftrightarrow", options: "mA"},
+{trigger: "bar", replacement: "\\overline{$0}$1", options: "mA"},
+{trigger: "qed", replacement: "\\blacksquare", options: "mA"},</code></pre>
+<p>Number Systems:</p>
+<pre><code>{trigger: "CC", replacement: "\\mathbb{C}", options: "mA"},
+{trigger: "RR", replacement: "\\mathbb{R}", options: "mA"},
+{trigger: "ZZ", replacement: "\\mathbb{Z}", options: "mA"},
+{trigger: "NN", replacement: "\\mathbb{N}", options: "mA"},
+{trigger: "QQ", replacement: "\\mathbb{Q}", options: "mA"},
+{trigger: "FF", replacement: "\\mathbb{F}", options: "mA"},</code></pre>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/rwheadon\.dev");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
