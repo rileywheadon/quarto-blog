@@ -5,17 +5,15 @@ website:
   title: "Home"
   navbar:
     right:
-      - href: resume.pdf
+      - href: assets/resume.pdf
         text: Résumé
       - href: blog.qmd
         text: Blog
       - href: https://github.com/rileywheadon
         icon: github
+      - href: https://linkedin.com/in/riley-wheadon-91b639354
+        icon: linkedin 
 
 format:
   html:
-    theme: litera
-    css: styles.css
-
-
-
+    theme: cosmo

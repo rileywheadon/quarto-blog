@@ -1,0 +1,163 @@
+---
+title: "Comparing Models of Delta-Notch Signalling"
+date: "2025-03-30"
+date-modified: "2025-03-30"
+categories: [Mathematics, Biology, Modelling, Python]
+image: sunset6.jpeg
+---
+
+*Mathematical biology* is a field of research that uses mathematical models to better understand the natural world.
+One approach used by mathematical biologists involves modelling the behaviour of individual molecules/cells/organisms called *agents*.
+This technique, known as *agent-based modelling*, is highly accurate but often computationally expensive.
+However, mathematicians have found that as the number of agents increases, it is possible to ignore the behaviour of individual agents and model the behaviour of the entire population using *ordinary differential equations* (ODEs).
+In this post, we’ll explore a biological system, develop three different mathematical models that describe it, and then compare the predictions of these models.
+
+## Delta-Notch Signalling
+
+Interactions between the Delta and Notch molecules play an important role in determining cell fate in a wide variety of plants and animals.
+Differences in cell fates are responsible for the emergence of patterns (i.e. the stripes of a zebra) and organ development (i.e. the formation of a heart in an embryo).
+Furthermore, issues with Delta-Notch signalling have been implicated in various cancers.
+
+So, how does Delta-Notch signalling work?
+
+Notch is a *receptor* on the cell membrane which can bind to a single Delta molecule. Notch receptors always bind to Delta molecules from neighbouring cells[^1]. When this happens, a single NICD molecule is created inside the cell. Then, the Notch and Delta molecules are removed from the membrane. In the cell, the NICD molecule does two things:
+
+- Promotes the production of new Notch molecules.
+- Inhibits the production of new Delta molecules.
+
+Now, imagine a cell whose neighbours have a *high* concentration of Delta molecules. This will trigger a lot of binding events, which will create many NICD molecules within the cell.
+The high concentration of NICD molecules will inhibit the production of Delta molecules.
+Therefore, the cell will have a *low* concentration of Delta molecules, unlike its neighbours.
+
+The opposite effect occurs in a cell whose neighbours all have a *low* concentration of Delta molecules (i.e. the cell ends up with a *high* concentration of Delta molecules).
+This is the mechanism that allows the Delta-Notch signalling network to produce different cell fates. We will use the following vocabulary to describe cell fates for the rest of this blog post:
+
+- The *primary fate* occurs when a cell has *high* Delta and *low* Notch.
+- The *secondary fate* occurs when a cell has *low* Delta and *high* Notch.
+
+[^1]: This is not entirely true. It is possible for a Delta molecule to bind to a Notch receptor from the same cell, in which case no NICD molecule is produced. This is known as *cis-inhibition*. There is also a second molecule known as Serrate or Jagged that binds to Notch receptors with different downstream effects. [Boareto et al. (2015)](https://cpb-us-e1.wpmucdn.com/blogs.rice.edu/dist/4/3844/files/2015/02/PNAS-2015-Boareto-E402-9.pdf) develop an ODE model which incorporates both of Serrate and cis-inhibition. 
+
+## Modelling Chemical Reactions
+
+In order to build a mathematical model of the Delta-Notch signalling network, we will need a precise understanding of the chemical reactions that take place within it.
+Scientists write chemical reactions using arrow notation. 
+For example, $X \rightarrow Y$ means "an $X$ is converted into a $Y$".
+We will use the symbol $\emptyset$ to represent the abscence of molecules. For example, $X \rightarrow \emptyset$ means "an $X$ decays" and $\emptyset \rightarrow X$ means "an $X$ is produced". Chemical reactions can also involve multiple molecules. For example, $X + 2Y \rightarrow W + Z$ means "an $X$ and two $Y$'s are converted into a $W$ and a $Z$".
+
+In our model of the Delta-Notch signalling network, there are six different chemical reactions that can occur within a single cell.
+$N$ is a Notch receptor, $D$ is a Delta molecule, and $I$ is a NICD molecule.
+These reactions are listed in the table below:
+
+| Reaction | Description |
+| --- | --- |
+| $N + D_{ext} \rightarrow I$  | A Delta molecule from another cell binds to a Notch receptor, releasing a NICD molecule. |
+| $N \rightarrow \emptyset$ | A Notch receptor decays. |
+| $D \rightarrow \emptyset$ | A Delta molecule decays. |
+| $I \rightarrow \emptyset$ | A NICD molecule decays. |
+| $\emptyset \rightarrow N$ | A Notch receptor is produced. |
+| $\emptyset \rightarrow D$ | A Delta molecule is produced. |
+
+**Remark**: Each of the reactions in the table above has a *rate*, which describes how frequently the reaction occurs. Fixed biological constants like reaction rates are known as *parameters* in a mathematical model. Usually, experimental biologists have come up with *estimates* of parameters in their research, which we can use as modellers. 
+
+## An Agent-Based Model
+
+As you may recall from the introduction, an *agent-based model* involves simulating individual entities known as *agents*.
+For the Delta-Notch signalling network, the agents are Notch, Delta, and NICD molecules, and the chemical reactions above define how they interact with each other.
+We wil use the *Gillespie algorithm* to simulate interactions between agents while taking into account the inherent randomness of reactions.
+Here's how the Gillespie algorithm works:
+
+**Step 1**: Initialize the system by assigning Notch, Delta, and NICD molecules to each cell.
+
+**Step 2**: Calculate the probability of each reaction occurring based on the reaction rates and molecule counts[^2]. The probability of a Delta molecule binding to a Notch receptor is proportional to the the number of Notch receptors times the number of Delta molecules. 
+
+**Step 3**: Generate a random waiting time before the next reaction *of any type* by "adding up" the probabilities determined in Step 2[^3].
+
+**Step 4**: Choose which reaction occurs by randomly selecting one based on its probability.
+
+**Step 5**: Adjust the number of molecules based on the chosen reaction.
+
+**Step 6**:  Continue Steps 2-5 until a certain time limit or number of reactions is reached.
+
+Using the Gillespie algorithm to simulate chemical reactions is very accurate, because we can determine the exact state of the system at any moment in time. However, as the number of molecules increases, the frequency of reactions increases drastically.
+
+![Figure 1: Results of ten simulations of the agent-based model on a two-cell domain. Green lines represent the cell which adopted the primary fate, while orange lines represent the cell which adopted the secondary fate. the The mean (solid) and standard deviation (dashed) over all simulations are shown in bold. ](agent-based.png)
+
+[^2]: In particular, we assume that the times between reactions are independent and memoryless. Therefore, the inter-reaction times are exponentially distributed.
+
+[^3]: Since the inter-reaction times are exponentially distributed, we can use the fact that for a set of independent random variables $X_i \sim \text{Exp}(\lambda_i)$, we have $\text{min}(X_1, \dots, X_n) \sim \text{Exp}\left(\sum_{i=1}^{n} \lambda_i \right)$.
+
+## Modelling with ODEs
+
+An **Ordinary Differential Equation** (ODE) describes how some quantity (like the number of Notch molecules in a cell) changes over time. To use an ODE, the quantity we are measuring must be *continuous*. However, the number of molecules in a cell is *discrete*, so any model that uses ODEs will be an approximation of the agent-based model. Chemistry doesn't deal in halves -- there can never be $120.43$ Notch molecules in a cell. But with if we simply round $120.43$ to the nearest integer, we'll get a reasonable approximation of the state of the system.
+
+ODEs are written in the form $X' = \dots$, where $X'$ denotes the change in $X$ per unit of time. If $X' > 0$, then $X$ is increasing, and if $X' < 0$, then $X$ is decreasing. If $X' = 0$, then $X$ is not changing. We call this a _steady state_. To model the Delta-Notch signalling network, we use three ODEs for Notch ($N$), Delta ($D$), and NICD ($I$). But before we can do this, we need to define some parameters:
+
+| Parameter  | Description  |
+|------------|-------------|
+| $k_{T}$   | The rate at which Delta molecules bind to Notch receptors. |
+| $\gamma$  | The rate at which Notch and Delta molecules decay. |
+| $\gamma_{I}$ | The rate at which NICD molecules decay. |
+| $f(I)$    | The rate at which Notch receptors are produced. It is an _increasing_ function of NICD since higher concentrations of NICD lead to higher Notch production. |
+| $g(I)$    | The rate at which Delta molecules are produced. It is a _decreasing_ function of NICD since higher concentrations of NICD lead to lower Delta production. |
+
+: {tbl-colwidths="[15,85]"}
+
+Using these parameters, we get the following system of ODEs:
+
+$$
+\begin{aligned}
+\frac{dN}{dt} &= \underbrace{f(I)}_{\text{(1)}} - \underbrace{k_{T}ND_{ext}}_{\text{(2)}} - \underbrace{\gamma N}_{\text{(3)}} \\[5pt]
+\frac{dD}{dt} &= \underbrace{g(I)}_{\text{(4)}} - \underbrace{k_{T}DN_{ext}}_{\text{(5)}} - \underbrace{\gamma D}_{\text{(6)}} \\[5pt]
+\frac{dI}{dt} &= \underbrace{k_{T}ND_{ext}}_{\text{(7)}} - \underbrace{\gamma_{I}I}_{\text{(8)}}
+\end{aligned}
+$$
+
+Lets go through each of the numbered terms one by one to get a better idea of whats going on:
+
+**1**: $f(I)$ is the rate of Notch production, so it makes a _positive_ contribution to $dN/dt$.
+
+**2**: $k_{T}ND_{ext}$ represents the rate of binding events between Delta molecule from another cell and Notch receptors from this cell. Binding events remove the Notch receptor, so this term contributes _negatively_ to $dN/dt$.
+
+**3**: $\gamma N$ is the rate of Notch decay, so it makes a _negative_ contribution to $dN/dt$.
+
+**4**: Similar to (1).
+
+**5**: Similar to (2), except now a Delta molcule from this cell is binding to a Notch receptor from another cell. This results in the removal of the Delta molecule, so this term is _negative_.
+
+**6**: Similar to (3).
+
+**7**: Every time a Delta molecule from another cell binds to a Notch molecule from this cell, a new NICD molecule is produced, so the binding term contributes _positively_ to $dI/dt$.
+
+**8**: Similar to (3) and (6), except NICD has a decay rate of $\gamma_{I}$ instead of $\gamma$.
+
+The ODE model is *deterministic*, which means that the result of a simulation is determined entirely by the initial state. If both cells start in exactly the same state, then there will be an identical number of Delta-Notch binding events in each cell, and the cells will not differentiate. Therefore, we make a small, random adjustment to the initial state (a *perturbation*) in order to ensure that cell differentiation occurs.
+
+![Figure 2: Results of ten simulations of the ODE model with random perturbations to the initial condition on a two-cell domain. Green lines represent the cell which adopted the primary fate, while orange lines represent the cell which adopted the secondary fate. The mean (solid) and standard deviation (dashed) over all simulations are shown in bold.](deterministic-ode.png)
+
+
+### Adding Randomness to ODEs
+
+From Figure 2, we can see that the ODEs produce very "smooth" simulations compared to the "jagged" simulations produced by the agent-based model. Since we know the agent-based model is closer to reality (because it simulates individual reactions), it would be nice if we could include some randomness in the ODEs. We can do this by adding a [Wiener Process](https://en.wikipedia.org/wiki/Wiener_process) to each differential equation. By reintroducing randomness into our model, we no longer need to add an initial perturbation, since the noise created by the Wiener Process is sufficient to drive cell differentiation.
+
+![Figure 3: Results of ten simulations of the differential equation-based model added randomness. Green lines represent the cell which adopted the primary fate, while orange lines represent the cell which adopted the secondary fate. The mean (solid) and standard deviation (dashed) over all simulations are shown in bold.](stochastic-ode.png)
+
+### Estimating the Noise Coefficient
+
+## Conclusion
+
+Mathematical and computational modelling are essential tools for understanding biological systems.
+While differential equation-based models give us a broad view of how molecule concentrations change over time, agent-based models offer a more detailed picture of the inherent randomness in biological processes.
+Building models of complicated systems often involves a trade-off between accuracy and computational efficiency.
+In the specific case of the Delta-Notch signalling network, our research shows that a differential equation-based model with added randomness is an elegant solution to this trade-off.
+
+This blend of biology, mathematics, and computer science is what makes mathematical biology such an exciting field to me.
+If you are a UBC student interested in learning more about mathematical biology, I would highly recommend taking MATH 361/462. 
+The differential equations sequence (MATH 215/316) and the proability sequence (MATH 302/303) are also quite useful for mathematical biology. 
+
+Thanks for reading!
+
+## Acknowledgement
+
+This material for this post is from a group project for MATH 462/560 (Projects in Mathematical Biology) at the University of British Columbia. You can find the code for the project [here](https://github.com/rileywheadon/delta-notch) and the final report [here](https://github.com/rileywheadon/delta-notch/blob/master/paper/paper.pdf)[^4].
+
+[^4]: The report goes into detail about some really fascinating aspects of the model that were too technical to cover here. In particular, we use bifurcation theory to show the existence of high and low notch steady states (Appendix D) and provide a proof that the agent-based model converges in expectation to the differential equation-based model (Appendix B). We also conduct a stability analysis of all three models and find that the agent-based model is more sensitive to changes in the parameter regime than the differential equation-based models.

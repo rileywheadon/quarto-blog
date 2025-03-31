@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/delta-notch/index.html",
       "/posts/sentence-analysis/index.html",
       "/posts/advanced-obsidian/index.html",
       "/posts/note-taking/index.html",

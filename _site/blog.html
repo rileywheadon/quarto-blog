@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.7.6">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-6c21014d9765ba549c6ebad95917e4d7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7804d4aec1bd18fc9d91d728704bbbf6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,9 +78,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-reading-time','listing-categories','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-reading-time','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -128,7 +128,6 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -149,7 +148,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./resume.pdf"> 
+    <a class="nav-link" href="./assets/resume.pdf"> 
 <span class="menu-text">Résumé</span></a>
   </li>  
   <li class="nav-item">
@@ -158,6 +157,11 @@ window.Quarto = {
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/rileywheadon"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linkedin.com/in/riley-wheadon-91b639354"> <i class="bi bi-linkedin" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -200,153 +204,83 @@ window.Quarto = {
 
 
 
-<div class="quarto-listing quarto-listing-container-grid" id="listing-posts">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="LLM,Python,R,Web Scraping" data-listing-date-sort="1731135600000" data-listing-file-modified-sort="1731189186595" data-listing-date-modified-sort="1731135600000" data-listing-reading-time-sort="8" data-listing-word-count-sort="1430">
-<a href="./posts/sentence-analysis/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/sentence-analysis/sunset5.jpeg" class="thumbnail-image card-img" style="height: 12em;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-A Structural Analysis of Academic Writing
-</h5>
-<div class="listing-reading-time card-text text-muted">
-8 min
+<div class="quarto-listing quarto-listing-container-table" id="listing-posts">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-posts-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-posts'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+         <option value="listing-title-sort" data-direction="asc">
+          Title
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
 </div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('LLM'); return false;">
-LLM
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Web Scraping'); return false;">
-Web Scraping
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-November 9, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="Obsidian" data-listing-date-sort="1730181600000" data-listing-file-modified-sort="1730229354950" data-listing-date-modified-sort="1730181600000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2927">
-<a href="./posts/advanced-obsidian/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/advanced-obsidian/sunset4.jpeg" class="thumbnail-image card-img" style="height: 12em;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Advanced Obsidian for STEM Students
-</h5>
-<div class="listing-reading-time card-text text-muted">
-15 min
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Obsidian'); return false;">
-Obsidian
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-October 29, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="Obsidian" data-listing-date-sort="1721714400000" data-listing-file-modified-sort="1730229347633" data-listing-date-modified-sort="1730181600000" data-listing-reading-time-sort="10" data-listing-word-count-sort="1810">
-<a href="./posts/note-taking/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/note-taking/sunset3.jpeg" class="thumbnail-image card-img" style="height: 12em;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-How I Take Notes
-</h5>
-<div class="listing-reading-time card-text text-muted">
-10 min
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Obsidian'); return false;">
-Obsidian
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-July 23, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="Obsidian" data-listing-date-sort="1721368800000" data-listing-file-modified-sort="1729397370903" data-listing-date-modified-sort="1729317600000" data-listing-reading-time-sort="9" data-listing-word-count-sort="1652">
-<a href="./posts/fast-typesetting/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/fast-typesetting/sunset2.jpeg" class="thumbnail-image card-img" style="height: 12em;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Fast Typesetting with Obsidian LaTeX Suite
-</h5>
-<div class="listing-reading-time card-text text-muted">
-9 min
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Obsidian'); return false;">
-Obsidian
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-July 19, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="University" data-listing-date-sort="1720936800000" data-listing-file-modified-sort="1729399004417" data-listing-date-modified-sort="1729317600000" data-listing-reading-time-sort="4" data-listing-word-count-sort="765">
-<a href="./posts/study-calculus/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/study-calculus/sunset1.jpeg" class="thumbnail-image card-img" style="height: 12em;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-How to Study Calculus
-</h5>
-<div class="listing-reading-time card-text text-muted">
-4 min
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('University'); return false;">
-University
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-July 14, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
+<table class="quarto-listing-table table table-hover caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"><span class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</span></th>
+<th data-quarto-table-cell-role="th"><span class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</span></th>
+<th data-quarto-table-cell-role="th">Reading Time</th>
+<th data-quarto-table-cell-role="th">Categories</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr class="odd" data-index="0" data-categories="TWF0aGVtYXRpY3MlMkNCaW9sb2d5JTJDTW9kZWxsaW5nJTJDUHl0aG9u" data-listing-date-sort="1743318000000" data-listing-file-modified-sort="1743394943526" data-listing-date-modified-sort="1743318000000" data-listing-reading-time-sort="12" data-listing-word-count-sort="2309" data-listing-title-sort="Comparing Models of Delta-Notch Signalling" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td><span class="listing-date">Mar 30, 2025</span></td>
+<td><a href="./posts/delta-notch/index.html" class="title listing-title">Comparing Models of Delta-Notch Signalling</a></td>
+<td><span class="listing-reading-time">12 min</span></td>
+<td><span class="listing-categories">Mathematics, Biology, Modelling, Python</span></td>
+</tr>
+<tr class="even" data-index="1" data-categories="TExNJTJDUHl0aG9uJTJDUiUyQ1dlYiUyMFNjcmFwaW5n" data-listing-date-sort="1731139200000" data-listing-file-modified-sort="1743352335091" data-listing-date-modified-sort="1731139200000" data-listing-reading-time-sort="7" data-listing-word-count-sort="1389" data-listing-title-sort="Text Classification for Academic Writing" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td><span class="listing-date">Nov 9, 2024</span></td>
+<td><a href="./posts/sentence-analysis/index.html" class="title listing-title">Text Classification for Academic Writing</a></td>
+<td><span class="listing-reading-time">7 min</span></td>
+<td><span class="listing-categories">LLM, Python, R, Web Scraping</span></td>
+</tr>
+<tr class="odd" data-index="2" data-categories="T2JzaWRpYW4=" data-listing-date-sort="1730185200000" data-listing-file-modified-sort="1741306410163" data-listing-date-modified-sort="1730185200000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2927" data-listing-title-sort="Advanced Obsidian for STEM Students" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td><span class="listing-date">Oct 29, 2024</span></td>
+<td><a href="./posts/advanced-obsidian/index.html" class="title listing-title">Advanced Obsidian for STEM Students</a></td>
+<td><span class="listing-reading-time">15 min</span></td>
+<td><span class="listing-categories">Obsidian</span></td>
+</tr>
+<tr class="even" data-index="3" data-categories="T2JzaWRpYW4=" data-listing-date-sort="1721718000000" data-listing-file-modified-sort="1741306410182" data-listing-date-modified-sort="1730185200000" data-listing-reading-time-sort="10" data-listing-word-count-sort="1810" data-listing-title-sort="How I Take Notes" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td><span class="listing-date">Jul 23, 2024</span></td>
+<td><a href="./posts/note-taking/index.html" class="title listing-title">How I Take Notes</a></td>
+<td><span class="listing-reading-time">10 min</span></td>
+<td><span class="listing-categories">Obsidian</span></td>
+</tr>
+<tr class="odd" data-index="4" data-categories="T2JzaWRpYW4=" data-listing-date-sort="1721372400000" data-listing-file-modified-sort="1741306410172" data-listing-date-modified-sort="1729321200000" data-listing-reading-time-sort="9" data-listing-word-count-sort="1652" data-listing-title-sort="Fast Typesetting with Obsidian LaTeX Suite" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td><span class="listing-date">Jul 19, 2024</span></td>
+<td><a href="./posts/fast-typesetting/index.html" class="title listing-title">Fast Typesetting with Obsidian LaTeX Suite</a></td>
+<td><span class="listing-reading-time">9 min</span></td>
+<td><span class="listing-categories">Obsidian</span></td>
+</tr>
+<tr class="even" data-index="5" data-categories="VW5pdmVyc2l0eQ==" data-listing-date-sort="1720940400000" data-listing-file-modified-sort="1741306410201" data-listing-date-modified-sort="1729321200000" data-listing-reading-time-sort="4" data-listing-word-count-sort="765" data-listing-title-sort="How to Study Calculus" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td><span class="listing-date">Jul 14, 2024</span></td>
+<td><a href="./posts/study-calculus/index.html" class="title listing-title">How to Study Calculus</a></td>
+<td><span class="listing-reading-time">4 min</span></td>
+<td><span class="listing-categories">University</span></td>
+</tr>
+</tbody>
+</table>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
@@ -433,8 +367,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -443,7 +375,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/rwheadon\.dev");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -545,7 +477,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

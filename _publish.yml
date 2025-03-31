@@ -1,4 +1,4 @@
 - source: project
   netlify:
     - id: f830dc36-6400-4899-a0fd-4f6eebcdab46
-      url: 'https://rwheadon.dev'
+      url: https://rwheadon.dev

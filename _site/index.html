@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.7.6">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,10 +34,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-6c21014d9765ba549c6ebad95917e4d7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7804d4aec1bd18fc9d91d728704bbbf6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,7 +67,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -88,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./resume.pdf"> 
+    <a class="nav-link" href="./assets/resume.pdf"> 
 <span class="menu-text">Résumé</span></a>
   </li>  
   <li class="nav-item">
@@ -97,6 +96,11 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/rileywheadon"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linkedin.com/in/riley-wheadon-91b639354"> <i class="bi bi-linkedin" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -115,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <div class="quarto-about-trestles">
   <div class="about-entity">
-    <img src="profile.jpeg" class="about-image
+    <img src="assets/profile.jpeg" class="about-image
   rounded " style="width: 17em;">
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -126,9 +130,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
   </div>
   <div class="about-contents"><main class="content" id="quarto-document-content">
-<p>Hi there! I’m Riley, a third year undergraduate student pursuing a mathematics degree at the University of British Columbia. In addition to my studies, I’m interested in philosophy, technology, and building efficient systems for thinking and writing. I also write a <a href="./blog.html">blog</a> which contains both personal essays and original research.</p>
-<p>I am currently working with Professor <a href="https://personal.math.ubc.ca/~cytryn/index.shtml">Eric Cytrynbaum</a> on modelling root growth in <em>A. Thaliana</em> as the receipient of a <a href="https://www.nserc-crsng.gc.ca/Students-Etudiants/UG-PC/USRA-BRPC_eng.asp">NSERC USRA</a>. Our research explores how the <a href="https://en.wikipedia.org/wiki/CLASP1">CLASP1</a> protein influences the formation of stable zones of cell behaviour within the growing root. This work has proven to be highly interdisciplinary, involving concepts from cell biology, computational mathematics, and numerical methods.</p>
-<p>My email is <a href="mailto:rileywheadon@gmail.com">rileywheadon@gmail.com</a>. Please don’t be afraid to reach out! Obviously, all opinions expressed are my own and are not representative of any groups I may be affiliated with.</p>
+<p>Hi there! I’m Riley, a third year undergraduate student pursuing a mathematics degree at the University of British Columbia. In addition to my studies, I’m interested in running, philosophy, Unix, Vim, and building efficient systems for thinking and writing. I also have a <a href="./blog.html">blog</a> where I write about note-taking methods, study strategies and my projects.</p>
+<p>I recently finished two semesters of research with <a href="https://personal.math.ubc.ca/~cytryn/index.shtml">Dr.&nbsp;Eric Cytrynbaum</a> where we developed a mathematical model of root growth in <em>A. Thaliana</em>. An up-to-date copy of the draft can be found <a href="https://github.com/rileywheadon/root-modelling/blob/master/paper/main.pdf">here</a> and the code for the project can be found <a href="https://github.com/rileywheadon/clasp-model">here</a>.</p>
+<p>My email is <a href="mailto:rileywheadon@gmail.com">rileywheadon@gmail.com</a>. Please don’t be afraid to reach out! All opinions are my own and are not representative of any groups I may be affiliated with.</p>
 
 
 </main></div>
@@ -209,8 +213,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -219,7 +221,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/rwheadon\.dev");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -321,7 +323,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

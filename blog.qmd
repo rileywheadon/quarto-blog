@@ -4,10 +4,10 @@ listing:
   id: posts
   contents: posts
   sort: "date desc"
-  type: grid
-  date-format: long
-  fields: [date, title, reading-time, categories, image]
-  image-height: 12em
+  type: table
+  date-format: medium
+  fields: [date, title, reading-time, categories]
+  table-hover: true
 page-layout: full
 title-block-banner: true
 ---
