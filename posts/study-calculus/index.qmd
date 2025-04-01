@@ -2,7 +2,7 @@
 title: "How to Study Calculus"
 date: "2024-07-14"
 date-modified: "2024-10-19"
-categories: [University]
+categories: [Mathematics]
 image: sunset1.jpeg
 ---
 
