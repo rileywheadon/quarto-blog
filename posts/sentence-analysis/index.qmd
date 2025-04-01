@@ -2,7 +2,7 @@
 title: "Text Classification for Academic Writing"
 date: "2024-11-09"
 date-modified: "2024-11-09"
-categories: [LLM, Python, R, Web Scraping]
+categories: [LLM, Python, ggplot2, BeautifulSoup4]
 image: sunset5.jpeg
 ---
 

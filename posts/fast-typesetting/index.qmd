@@ -3,7 +3,6 @@ title: "Fast Typesetting with Obsidian LaTeX Suite"
 date: "2024-07-19"
 date-modified: "2024-10-19"
 categories: [Obsidian]
-image: sunset2.jpeg
 ---
 
 
